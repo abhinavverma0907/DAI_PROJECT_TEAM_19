@@ -1,0 +1,227 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=0.65in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+
+\titleformat{\section}
+  {\normalsize\bfseries}{\thesection.}{0.4em}{}
+\titlespacing*{\section}{0pt}{6pt}{2pt}
+
+\setlist[itemize]{nosep,leftmargin=1.2em}
+\setlist[enumerate]{nosep,leftmargin=1.5em}
+
+\begin{document}
+
+\begin{center}
+    {\Large\bfseries Team [19]: Does the Price of Gold Kill Brides?}\\[3pt]
+    {\small 11 October 2026 \textbar{} @BioXCsec}
+\end{center}
+
+\section{Main Hypothesis and Research Questions}
+
+\textbf{When gold becomes more expensive, do more Indian brides die
+over dowry?} Gold jewellery is central to many Indian dowry practices.
+As gold prices rise, meeting a groom's family's expectations may become
+harder for the bride's family, potentially increasing harassment and,
+in extreme cases, deaths within marriage.
+
+The raw national trends appear to contradict this hypothesis. Gold in
+Mumbai rose from approximately Rs.\ 4,579 per 10g in 2001--02 to
+Rs.\ 75,842 in 2024--25 (RBI). Recorded dowry deaths increased from
+approximately 6,851 in 2001 to a peak of 8,618 in 2011, then fell to
+5,737 in 2024 (NCRB). A naive correlation might suggest that costlier
+gold saves brides. Our project investigates whether this pattern is
+causal, coincidental, or driven by other trends.
+
+We investigate three questions:
+\begin{enumerate}
+    \item \textbf{Shocks, not trends:} After adjusting for inflation
+    and removing long-run trends, are sharp gold-price increases
+    followed by more dowry deaths? Since Section 304B concerns deaths
+    within seven years of marriage, we will test lagged and
+    multi-year-average gold prices.
+
+    \item \textbf{Who is exposed?} Do states with historically high
+    dowry-death rates respond more strongly to gold-price changes
+    than other states?
+
+    \item \textbf{Real decline or recording change?} Is the decline
+    after 2011 a real reduction in violence or a change in case
+    registration? We will compare dowry deaths with cases under the
+    Dowry Prohibition Act and examine the July 2024 transition from
+    the IPC to the Bharatiya Nyaya Sanhita (BNS).
+\end{enumerate}
+
+Bhalotra, Chakravarty and Gulesci (2020) found that gold-price
+increases affect female infant mortality and the sex ratio at birth,
+as parents anticipate future dowry costs. We investigate a later
+stage of the same proposed pathway: violence against women after
+marriage, using state-level crime data for 2001--2024.
+
+\section{Sources and Related Work}
+
+\begin{itemize}
+    \item \textbf{Core paper:}
+    \href{https://docs.iza.org/dp9679.pdf}
+    {Bhalotra, Chakravarty and Gulesci (2020),
+    ``The Price of Gold: Dowry and Death in India''},
+    \textit{Journal of Development Economics}.
+
+    \item \textbf{Accessible summary:}
+    \href{https://www.promarket.org/2018/03/26/indias-bridal-dowry-tradition-leads-missing-women/}
+    {ProMarket, ``India's Bridal Dowry Tradition Leads to Missing Women''}.
+
+    \item \textbf{Course case study:}
+    \href{https://rajatgururaj.substack.com/p/exam-fraud-is-bigger-than-neet}
+    {Rajat Gururaj, ``Exam Fraud Is Bigger Than NEET''}.
+
+    \item \textbf{Crime data:} NCRB, \textit{Crime in India}
+    reports (2001--2024), chapters on crimes against women.
+\end{itemize}
+
+\section{Datasets}
+
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{0.23\textwidth}
+    >{\raggedright\arraybackslash}p{0.20\textwidth}
+    >{\raggedright\arraybackslash}p{0.10\textwidth}
+    X}
+\toprule
+\textbf{Dataset} & \textbf{Variables} & \textbf{Years} &
+\textbf{Known issues and treatment} \\
+\midrule
+
+\href{https://www.kaggle.com/datasets/balajivaraprasad/crimes-against-women-in-india-2001-2021}
+{Kaggle: Crimes Against Women in India}
+& Dowry deaths; Dowry Prohibition Act cases by state
+& 2001--2021
+& The 2014 dowry-death column contains Dowry Prohibition Act figures.
+Delhi is missing for 2001--2010. We will verify and correct these
+against NCRB reports. \\
+
+\href{https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1701607577CrimeinIndia2022Book1.pdf}
+{NCRB 2022},
+\href{https://data.opencity.in/dataset/crime-in-india-2023}
+{2023}, and
+\href{https://data.opencity.in/dataset/crime-in-india-2024}
+{2024}
+& State dowry deaths; female population for rates
+& 2020--2024
+& Data are published in tables and PDFs. For 2024, IPC and BNS
+counts will be combined where appropriate, with definitions checked. \\
+
+\href{https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=23860}
+{RBI Handbook, Table 35}
+& Mumbai gold price, Rs.\ per 10g
+& 1985--86 to 2025--26
+& Fiscal years must be aligned with NCRB calendar years. \\
+
+\href{https://www.kaggle.com/datasets/nguynvnphong/priceindia}
+{Kaggle: Gold Price India}
+& Daily and annual gold prices in INR
+& 1978--Jan.\ 2021
+& London prices converted to rupees, excluding Indian import duty;
+used as a robustness check. \\
+
+\href{https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=23834}
+{RBI Handbook, Table 9 and Table 34}
+& State per-capita income; CPI
+& 2001--2026
+& Income series have undergone base-year changes. \\
+
+\bottomrule
+\end{tabularx}
+\normalsize
+
+All state-level series will be harmonised for boundary changes:
+Andhra Pradesh--Telangana (2014), Jammu and Kashmir--Ladakh (2019),
+and Dadra and Nagar Haveli--Daman and Diu (2020).
+
+\section{Methods, Tools, and Visualisation}
+
+We will use Python (\texttt{pandas}, \texttt{statsmodels},
+\texttt{scipy.stats}, \texttt{matplotlib}, and Plotly) for data
+cleaning, merging, detrending, lagged regressions, and state
+fixed-effects models. We will extract NCRB tables using
+\texttt{pdfplumber} or \texttt{pdftotext} and conduct exploration
+in Jupyter notebooks.
+
+The final output will be an interactive Plotly Dash or Tableau Public
+dashboard with a state map and a gold-price-versus-dowry-deaths
+timeline. We will examine real gold prices, short-run price shocks,
+lagged effects, state-level exposure, and placebo specifications.
+Given the short time series, results will be interpreted cautiously
+and not treated as causal without additional identifying assumptions.
+
+\section{LLM and Agent Use}
+
+We used Claude Code (Claude Opus 5.5) to brainstorm topics, run agents
+that checked dataset availability for this and two discarded topics,
+locate the Bhalotra et al.\ paper, and draft this proposal. Agent
+checks identified a likely error in the Kaggle dowry data and the
+Delhi data gap. We will independently verify all figures against
+original NCRB and RBI sources.
+
+\textbf{Transcript (PDF):} Link to be added before submission.
+
+\section{Logistics and Work Plan}
+
+We will add our team number, title, GitHub link, and three primary
+sources (NCRB, RBI, Kaggle) to the course response spreadsheet.
+The project will use a shared GitHub repository with separate branches
+for each work package, peer review before merging, and a shared log
+of data-cleaning decisions. We will meet online on Tuesdays and during
+a help-session slot or in the department library on Fridays.
+
+\small
+\begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}X
+    >{\raggedright\arraybackslash}p{0.20\textwidth}
+    >{\raggedright\arraybackslash}p{0.14\textwidth}}
+\toprule
+\textbf{Work package} & \textbf{Owner} & \textbf{Deadline} \\
+\midrule
+Clean 2001--2021 dowry-death panel; fix 2014 and Delhi errors
+& Member 1 & 18 Oct. \\
+Extract 2022--2024 NCRB tables; harmonise state boundaries
+& Member 2 & 18 Oct. \\
+Prepare gold and CPI series; align fiscal and calendar years; make
+exploratory charts
+& Member 3 & 18 Oct. \\
+Checkpoint 1: GitHub repository and exploration notebooks
+& All & 21 Oct. \\
+Estimate detrended and lagged models; state-exposure analysis;
+placebo test
+& Members 1, 2 & 30 Oct. \\
+Dashboard, report, 3--5 minute video, and references
+& Member 3 + all & 4 Nov. \\
+\bottomrule
+\end{tabularx}
+\normalsize
+
+\section{Questions for the Teaching Team}
+
+\begin{itemize}
+    \item Is a Kaggle compilation acceptable as a primary source if
+    we verify and correct it against NCRB?
+    \item How should we separate short-run gold-price effects from
+    long-run trends with only about 24 years of data?
+    \item Does the dataset table count towards the two-page limit?
+\end{itemize}
+
+\end{document}
